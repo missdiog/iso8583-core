@@ -19,7 +19,6 @@
 		<gson.version>2.2.4</gson.version>
 		
 		
-		
 		<!-- <junit-theories.version>4.11</junit-theories.version> -->
 	</properties>
 
@@ -45,6 +44,11 @@
 			<groupId>me.andpay.ac</groupId>
 			<artifactId>ac-const</artifactId>
 			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>me.andpay.ac.bgw.api</groupId>
+			<artifactId>ac-bgw-upmp-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jpos</groupId>
