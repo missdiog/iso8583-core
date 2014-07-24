@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Iso8583域转换辅助器 -->
+	<bean id="iso8583.helper.Field0TransferHelper" class="com.yeepay.message.iso8583.helper.MessageTypeFieldTransferHelper">
+		<description>Field 0 - Message type</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field2TransferHelper" class="com.yeepay.message.iso8583.helper.PANFieldTransferHelper">
+		<description>Field 2 - PAN</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field3TransferHelper" class="com.yeepay.message.iso8583.helper.ProcessCodeFieldTransferHelper">
+		<description>Field 3 - Process code</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field4TransferHelper" class="com.yeepay.message.iso8583.helper.AmountFieldTransferHelper">
+		<description>Field 4 - Amount</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field11TransferHelper" class="com.yeepay.message.iso8583.helper.AuthTraceNoFieldTransferHelper">
+		<description>Field 11 - Auth trace no</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field12TransferHelper" class="com.yeepay.message.iso8583.helper.AuthTimeFieldTransferHelper">
+		<description>Field 12 - Auth time</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field13TransferHelper" class="com.yeepay.message.iso8583.helper.AuthDateFieldTransferHelper">
+		<description>Field 13 - Auth date</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field15TransferHelper" class="com.yeepay.message.iso8583.helper.SettlementDateFieldTransferHelper">
+		<description>Field 15 - Settlement date</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field22TransferHelper" class="com.yeepay.message.iso8583.helper.ServiceEntryModeFieldTransferHelper">
+		<description>Field 22 - Service entry mode</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field23TransferHelper" class="com.yeepay.message.iso8583.helper.CardSeqNoFieldTransferHelper">
+		<description>Field 23 - Card sequence number</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field25TransferHelper" class="com.yeepay.message.iso8583.helper.ServiceConditionCodeFieldTransferHelper">
+		<description>Field 25 - Service condition code</description>
+	</bean>
+	
+	<bean id="iso8583.helper.Field32TransferHelper" class="com.yeepay.message.iso8583.helper.AcquiringInstitutionIdFieldTransferHelper">
+		<description>Field 32 - Acquiring institution id</description>
+	</bean>
+	
+	<bean id="iso8583.helper.Field35TransferHelper" class="com.yeepay.message.iso8583.helper.Track2FieldTransferHelper">
+		<description>Field 35 - Track2</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field36TransferHelper" class="com.yeepay.message.iso8583.helper.Track3FieldTransferHelper">
+		<description>Field 36 - Track3</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field37TransferHelper" class="com.yeepay.message.iso8583.helper.AuthRefFieldTransferHelper">
+		<description>Field 37 - Auth ref</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field38TransferHelper" class="com.yeepay.message.iso8583.helper.AuthCodeFieldTransferHelper">
+		<description>Field 38 - Auth code</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field39TransferHelper" class="com.yeepay.message.iso8583.helper.AuthResponseCodeFieldTransferHelper">
+		<description>Field 39 - Auth response code</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field41TransferHelper" class="com.yeepay.message.iso8583.helper.AuthTerminalIdFieldTransferHelper">
+		<description>Field 41 - Auth terminal id</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field42TransferHelper" class="com.yeepay.message.iso8583.helper.AuthMerchantIdFieldTransferHelper">
+		<description>Field 42 - Auth merchant id</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field44TransferHelper" class="com.yeepay.message.iso8583.helper.AdditionalAuthResponseFieldTransferHelper">
+		<description>Field 44 - Additional auth response</description>
+	</bean>
+	
+	<bean id="iso8583.helper.Field49TransferHelper" class="com.yeepay.message.iso8583.helper.CurrencyCodeFieldTransferHelper">
+		<description>Field 49 - Currency code</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field52TransferHelper" class="com.yeepay.message.iso8583.helper.PINFieldTransferHelper">
+		<description>Field 52 - PIN</description>
+	</bean>
+	
+	<bean id="iso8583.helper.Field54TransferHelper" class="com.yeepay.message.iso8583.helper.BalanceFieldTransferHelper">
+		<description>Field 54 - Balance</description>
+	</bean>
+
+	<bean id="iso8583.helper.Field55TransferHelper" class="com.yeepay.message.iso8583.helper.ICDataFieldTransferHelper">
+		<description>Field 55 - IC data</description>
+	</bean>
+	
+</beans>

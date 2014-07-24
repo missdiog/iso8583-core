@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 湖南银联POS接口自定义域转换辅助器 -->
+	<bean id="cup.hn.pos.Field18TransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field18TransferHelper">
+		<description>Field 18 - Merchants type</description>
+	</bean>
+	
+	<bean id="cup.hn.pos.Field28TransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field28TransferHelper">
+		<description>Field 28 - Transaction fee</description>
+	</bean>
+	
+	<bean id="cup.hn.pos.Field33TransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field33TransferHelper">
+		<description>Field 33 - Forwarding institution id</description>
+	</bean>
+	
+	<bean id="cup.hn.pos.Field48TransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field48TransferHelper">
+		<description>Field 48 - Aditional data (private)</description>
+	</bean>
+	
+	<bean id="cup.hn.pos.Field63UserDefinedTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field63TransferHelper">
+		<description>Field 63 - Aditional data (private)</description>
+	</bean>
+	<bean id="cup.hn.pos.Field63DefaultTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field63DefaultTransferHelper" />
+	
+	<bean id="cup.hn.pos.Field63TransferHelper" class="com.yeepay.message.iso8583.helper.DispatchFieldTransferHelper">
+		<property name="fieldNo" value="63" />
+		<property name="helperSelector">
+			<bean class="com.yeepay.message.iso8583.ProcessCodeFieldTransferHelperSelector">
+				<!-- 普通交易 -->
+				<property name="defaultHelper" ref="cup.hn.pos.Field63DefaultTransferHelper" />
+				<property name="processCode2Helper">
+					<map>
+						<!-- 电力欠费查询 -->
+						<entry key="311010" value-ref="cup.hn.pos.Field63UserDefinedTransferHelper" />
+						<!-- 电力缴费请求 -->
+						<entry key="002010" value-ref="cup.hn.pos.Field63UserDefinedTransferHelper" />
+					</map>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="cup.hn.pos.Field64TransferHelper" class="com.yeepay.message.iso8583.helper.MacFieldTransferHelper">
+		<description>Field 64 - MAC(Message Authentication Code)</description>
+		<property name="macHelper" ref="cup.hn.pos.MacHelper" />
+	</bean>
+	
+	<!-- MAC助手类 -->
+	<bean id="cup.hn.pos.MacHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.CupHnPosIso8583MacHelper">
+		<property name="txnISOPackager" ref="cup.hn.pos.TxnISOPackager" />
+	</bean>
+	
+	<!-- 交易ISO包定义 -->
+	<!-- <bean id="cup.hn.pos.TxnISOPackager" class="me.andpay.ac.bgw.srv.auth.channel.cup.sh.pos.iso8583.packager.TxnISOPackager" /> -->
+	<bean id="cup.hn.pos.TxnISOPackager" class="com.yeepay.message.iso8583.packager.ISO87BPackager" />
+	
+
+	<!-- 湖南银联POS接口Iso8583域转换器 -->
+	<bean id="cup.hn.pos.Iso8583FieldTransfer" class="com.yeepay.message.iso8583.ConfigurableIso8583FieldTransferForAuthImpl">
+		<property name="helpers">
+			<set>
+				<ref bean="iso8583.helper.Field2TransferHelper" />
+				<ref bean="iso8583.helper.Field4TransferHelper" />
+				<ref bean="iso8583.helper.Field11TransferHelper" />
+				<ref bean="iso8583.helper.Field12TransferHelper" />
+				<ref bean="iso8583.helper.Field13TransferHelper" />
+				<ref bean="iso8583.helper.Field15TransferHelper" />
+				
+				<ref bean="cup.hn.pos.Field18TransferHelper" />
+				
+				<ref bean="iso8583.helper.Field22TransferHelper" />
+				<ref bean="iso8583.helper.Field23TransferHelper" />
+				<ref bean="iso8583.helper.Field25TransferHelper" />
+				
+				<ref bean="cup.hn.pos.Field28TransferHelper" />
+				
+				<ref bean="iso8583.helper.Field32TransferHelper" />
+				
+				<ref bean="cup.hn.pos.Field33TransferHelper" />
+				
+				<ref bean="iso8583.helper.Field35TransferHelper" />
+				<ref bean="iso8583.helper.Field36TransferHelper" />
+				<ref bean="iso8583.helper.Field37TransferHelper" />
+				<ref bean="iso8583.helper.Field38TransferHelper" />
+				<ref bean="iso8583.helper.Field39TransferHelper" />
+				<ref bean="iso8583.helper.Field41TransferHelper" />
+				<ref bean="iso8583.helper.Field42TransferHelper" />
+				<ref bean="iso8583.helper.Field44TransferHelper" />
+				
+				<ref bean="cup.hn.pos.Field48TransferHelper" />
+				
+				<ref bean="iso8583.helper.Field49TransferHelper" />
+				<ref bean="iso8583.helper.Field52TransferHelper" />
+				<ref bean="iso8583.helper.Field54TransferHelper" />
+				<ref bean="iso8583.helper.Field55TransferHelper" />
+				
+				<ref bean="cup.hn.pos.Field63TransferHelper" />
+				<ref bean="cup.hn.pos.Field64TransferHelper" />
+				
+			</set>
+		</property>
+	</bean>
+
+	<!-- 湖南银联POS接口Iso8583位图配置 -->
+	<bean id="cup.hn.pos.Iso8583BitMapConfig" class="com.yeepay.message.iso8583.Iso8583BitMapConfig">
+		<property name="iso8583BitMapByProcessCode">
+			<map>
+				<!-- 签到 -->
+				<!-- 
+				<entry key="M001">
+					<bean class="me.andpay.ac.bgw.util.message.iso8583.Iso8583BitMap">
+						<property name="networkManCode">
+							<value>003</value>
+						</property>
+						<property name="requestMsgType">
+							<value>0800</value>
+						</property>
+						<property name="requestBitMap">
+							<value>11*,41*,42*,60*,62,63*</value>
+						</property>
+						<property name="responseMsgType">
+							<value>0810</value>
+						</property>
+						<property name="responseBitMap">
+							<value>11=,12*,13*,32*,37*,39*,41=,42=,60*,62</value>
+						</property>
+					</bean>
+				</entry>
+				 -->
+				<!-- 信用卡还款-转入卡验证位图定义 -->
+				<entry key="400130">
+					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">
+						<property name="processCode">
+							<value>400130</value>
+						</property>
+						<property name="serviceConditionCode">
+							<value>00</value>
+						</property>
+						<property name="requestMsgType">
+							<value>0200</value>
+						</property>
+						<property name="requestBitMap">
+							<value>11*,22*</value>
+							<!-- 4*,11*,12*,13*,18*,22*,23,25*,32*,33*,41*,42*,44*,49*,55,64* -->
+						</property>
+						<property name="responseMsgType">
+							<value>0210</value>
+						</property>
+						<property name="responseBitMap">
+							<value>11*,22*</value>
+							<!-- 4=,11=,12*,13*,18*,22*,23,25=,28*,32=,33*,38,39*,41*,42*,44,49=,55,64= -->
+						</property>
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- 湖南银联POS处理代码解析器 -->
+	<bean id="cup.hn.pos.ProcessCodeParser" class="com.yeepay.message.iso8583.ConfigurableProcessCodeParserImpl">
+		<property name="defaultSrvCondCode" value="00" /><!-- 默认服务点条件代码 -->
+		<property name="iso8583BitMapConfig">
+			<ref bean="cup.hn.pos.Iso8583BitMapConfig" />
+		</property>
+	</bean>
+
+	<!-- 湖南银联POS系统Iso8583转换器 -->
+	<bean id="cup.hn.pos.Iso8583Transfer" class="com.yeepay.message.iso8583.Iso8583TransferForAuthImpl">
+		<property name="iso8583FieldTransferForAuth">
+			<ref bean="cup.hn.pos.Iso8583FieldTransfer" />
+		</property>
+		<property name="iso8583BitMapConfig">
+			<ref bean="cup.hn.pos.Iso8583BitMapConfig" />
+		</property>
+		<property name="processCodeParser">
+			<ref bean="cup.hn.pos.ProcessCodeParser" />
+		</property>
+	</bean>
+
+	<!-- 湖南银联交易报文转换器 -->
+	<bean id="iso8583.convertor.MessageConvertor" class="com.yeepay.message.iso8583.Iso8583MessageConvertor">
+		<property name="tpdu" value="6000160000" /> <!-- ${ac-bgw.auth.cup.sh.pos.tpdu} -->
+		<property name="txnHead" value="602200000000" /> <!-- ${ac-bgw.auth.cup.sh.pos.txnHead} -->
+		<property name="iso8583TransferForAuth" ref="cup.hn.pos.Iso8583Transfer" />
+		<property name="defaultTxnISOPackager" ref="cup.hn.pos.TxnISOPackager" />
+		<property name="txnISOPackagerMap">
+			<map>
+				<!-- 信用卡还款-转入卡验证位图定义 -->
+				<entry key="400130" value-ref="cup.hn.pos.TxnISOPackager" />
+			</map>
+		</property>
+	</bean>
+
+</beans>
