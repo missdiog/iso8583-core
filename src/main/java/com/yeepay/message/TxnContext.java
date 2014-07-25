@@ -41,6 +41,9 @@ public class TxnContext {
 		if (recordModifiedProps) {
 			modifiedKeys.add(propName);
 		}
+		if(propValue instanceof String){
+			propValue = propValue.toString().trim();
+		}
 		return dataMap.put(propName, propValue);
 	}
 

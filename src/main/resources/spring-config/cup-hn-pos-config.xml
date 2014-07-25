@@ -168,6 +168,7 @@
 
 	<!-- 湖南银联POS系统Iso8583转换器 -->
 	<bean id="cup.hn.pos.Iso8583Transfer" class="com.yeepay.message.iso8583.Iso8583TransferForAuthImpl">
+		<!-- <property name="compareParsedProcessCode" value="true"> -->
 		<property name="iso8583FieldTransferForAuth">
 			<ref bean="cup.hn.pos.Iso8583FieldTransfer" />
 		</property>
@@ -192,5 +193,10 @@
 			</map>
 		</property>
 	</bean>
-
+	
+	<bean id="cup.hn.pos.CupHnPosIso8583Service" class="com.yeepay.channel.cup.hn.service.impl.CupHnPosIso8583ServiceImpl">
+		<property name="iso8583MessageConvertor">
+			<ref bean="iso8583.convertor.MessageConvertor" />
+		</property>
+	</bean>
 </beans>

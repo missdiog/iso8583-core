@@ -304,7 +304,7 @@ public final class TxnPropNames {
 	/**
 	 * 商户类型- 处理要求 - java.lang.String
 	 */
-	public static final String MERCHANT_TYPE = "merchantType";
+	public static final String MERCHANT_TYPE = "merType";
 	
 	/**
 	 * 手续费 - java.lang.String(C+8位手续费值)

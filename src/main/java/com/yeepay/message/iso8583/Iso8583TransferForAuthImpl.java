@@ -22,9 +22,9 @@ public class Iso8583TransferForAuthImpl extends AbstractIso8583Transfer implemen
 	private boolean parseProcessCodeByResponse = true;
 
 	/**
-	 * 检查解析后的处理代码与原处理代码是否一致
+	 * 检查解析后的处理代码与原处理代码是否一致(默认为否)
 	 */
-	private boolean compareParsedProcessCode = true;
+	private boolean compareParsedProcessCode = false;
 
 	/**
 	 * iso8583域转换器
