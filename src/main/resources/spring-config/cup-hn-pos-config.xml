@@ -15,15 +15,32 @@
 		<description>Field 33 - Forwarding institution id</description>
 	</bean>
 	
-	<bean id="cup.hn.pos.Field48TransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field48TransferHelper">
+	<bean id="cup.hn.pos.Field48DefaultTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field48DefaultTransferHelper">
+		<description>Field 48 - Aditional data (Default)</description>
+	</bean>
+	<bean id="cup.hn.pos.Field48SecretKeyTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field48SecretKeyTransferHelper">
 		<description>Field 48 - Aditional data (private)</description>
 	</bean>
+	<bean id="cup.hn.pos.Field48TransferHelper" class="com.yeepay.message.iso8583.helper.DispatchFieldTransferHelper">
+		<property name="fieldNo" value="48" />
+		<property name="helperSelector">
+			<bean class="com.yeepay.message.iso8583.ProcessCodeFieldTransferHelperSelector">
+				<!-- 默认 -->
+				<property name="defaultHelper" ref="cup.hn.pos.Field48DefaultTransferHelper" />
+				<property name="processCode2Helper">
+					<map>
+						<!-- 获取机构密钥 -->
+						<entry key="980000" value-ref="cup.hn.pos.Field48SecretKeyTransferHelper" />
+					</map>
+				</property>
+			</bean>
+		</property>
+	</bean>
 	
+	<bean id="cup.hn.pos.Field63DefaultTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field63DefaultTransferHelper" />
 	<bean id="cup.hn.pos.Field63UserDefinedTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field63TransferHelper">
 		<description>Field 63 - Aditional data (private)</description>
 	</bean>
-	<bean id="cup.hn.pos.Field63DefaultTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field63DefaultTransferHelper" />
-	
 	<bean id="cup.hn.pos.Field63TransferHelper" class="com.yeepay.message.iso8583.helper.DispatchFieldTransferHelper">
 		<property name="fieldNo" value="63" />
 		<property name="helperSelector">
@@ -108,27 +125,120 @@
 		<property name="iso8583BitMapByProcessCode">
 			<map>
 				<!-- 签到 -->
-				<!-- 
-				<entry key="M001">
-					<bean class="me.andpay.ac.bgw.util.message.iso8583.Iso8583BitMap">
-						<property name="networkManCode">
-							<value>003</value>
+				<entry key="910000">
+					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">
+						<property name="processCode">
+							<value>910000</value>
+						</property>
+						<property name="serviceConditionCode">
+							<value>00</value>
+						</property>
+						<property name="requestMsgType">
+							<value>0820</value>
+						</property>
+						<property name="requestBitMap">
+							<value>3*,11*,12*,13*,33*</value>
+						</property>
+						<property name="responseMsgType">
+							<value>0830</value>
+						</property>
+						<property name="responseBitMap">
+							<value>3*,11*,12*,13*,33*,39*</value>
+						</property>
+					</bean>
+				</entry>
+				<!-- 获取机构密钥 -->
+				<entry key="980000">
+					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">
+						<property name="processCode">
+							<value>980000</value>
+						</property>
+						<property name="serviceConditionCode">
+							<value>00</value>
 						</property>
 						<property name="requestMsgType">
 							<value>0800</value>
 						</property>
 						<property name="requestBitMap">
-							<value>11*,41*,42*,60*,62,63*</value>
+							<value>3*,11*,12*,13*,33*</value>
 						</property>
 						<property name="responseMsgType">
 							<value>0810</value>
 						</property>
 						<property name="responseBitMap">
-							<value>11=,12*,13*,32*,37*,39*,41=,42=,60*,62</value>
+							<value>3*,11*,12*,13*,33*,39*,48,64*</value>
 						</property>
 					</bean>
 				</entry>
-				 -->
+				<!-- 全国手机话费充值 -->
+				<entry key="000002">
+					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">
+						<property name="processCode">
+							<value>000002</value>
+						</property>
+						<property name="serviceConditionCode">
+							<value>00</value>
+						</property>
+						<property name="requestMsgType">
+							<value>0200</value>
+						</property>
+						<property name="requestBitMap">
+							<value>2*,3*,4*,11*,12*,13*,18*,22*,23,25*,32*,33*,35,36,41*,42*,44*,49*,52,55,64*</value>
+						</property>
+						<property name="responseMsgType">
+							<value>0210</value>
+						</property>
+						<property name="responseBitMap">
+							<value>2*,3*,4*,11*,12*,13*,15*,18*,22*,25*,32*,33*,37,38,39*,41*,42*,48,49*,64*</value>
+						</property>
+					</bean>
+				</entry>
+				<!-- 水、电欠费查询 -->
+				<entry key="311010">
+					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">
+						<property name="processCode">
+							<value>311010</value>
+						</property>
+						<property name="serviceConditionCode">
+							<value>00</value>
+						</property>
+						<property name="requestMsgType">
+							<value>0200</value>
+						</property>
+						<property name="requestBitMap">
+							<value>3*,11*,12*,13*,18*,25*,32*,33*,41*,42*,44*,64*</value>
+						</property>
+						<property name="responseMsgType">
+							<value>0210</value>
+						</property>
+						<property name="responseBitMap">
+							<value>3*,4,11*,12*,13*,18*,25*,32*,33*,39*,41*,42*,44*,48,63,64*</value>
+						</property>
+					</bean>
+				</entry>
+				<!-- 水、电缴费请求 -->
+				<entry key="002010">
+					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">
+						<property name="processCode">
+							<value>002010</value>
+						</property>
+						<property name="serviceConditionCode">
+							<value>00</value>
+						</property>
+						<property name="requestMsgType">
+							<value>0200</value>
+						</property>
+						<property name="requestBitMap">
+							<value>2*,3*,4*,11*,12*,13*,18*,22*,23,25*,32*,33*,35,36,41*,42*,44*,48,49*,52,55,63*,64*</value>
+						</property>
+						<property name="responseMsgType">
+							<value>0210</value>
+						</property>
+						<property name="responseBitMap">
+							<value>2*,3*,4*,11*,12*,13*,15*,18*,22*,25*,32*,33*,37,39*,41*,42*,44*,49*,63*,64*</value>
+						</property>
+					</bean>
+				</entry>
 				<!-- 信用卡还款-转入卡验证位图定义 -->
 				<entry key="400130">
 					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">

@@ -326,6 +326,50 @@ public final class TxnPropNames {
 	 */
 	public static final String POWER_UNIT_CODE = "powerUnitCode";
 	
+	/**
+	 * 欠费标识 - java.lang.String
+	 */
+	public static final String OWE_FLAG = "oweFlag";
+	
+	/**
+	 * 用户名称 - java.lang.String
+	 */
+	public static final String USER_NAME = "userName";
+	
+	/**
+	 * 总应缴费用 - java.math.BigDecimal
+	 */
+	public static final String TOTAL_PAY_BILLS = "totalPayBills";
+	
+	/**
+	 * 总违约金 - java.math.BigDecimal
+	 */
+	public static final String TOTAL_PENALTY_CONTRACT = "totalPenaltyContract";
+	
+	/**
+	 * 欠费月数 - java.lang.Integer
+	 */
+	public static final String OWE_MONTHS = "oweMonths";
+	
+	/**
+	 * 应收电费标识号 - java.lang.String
+	 */
+	public static final String POWER_BILLS_REC_NO = "powerBillsRecNo";
+	
+	/**
+	 * 每月欠费金额 - java.math.BigDecimal
+	 */
+	public static final String MONTH_OWE_BILLS = "monthOweBills";
+	
+	/**
+	 * 每月违约金 - java.math.BigDecimal
+	 */
+	public static final String MONTH_PENALTY_CONTRACT = "monthPenaltyContract";
+	
+	/**
+	 * 电力返回错误代码 - java.lang.String
+	 */
+	public static final String POWER_ERROR_CODE = "powerErrorCode";
 
 	private TxnPropNames() {
 		

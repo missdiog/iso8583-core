@@ -12,12 +12,11 @@ import com.yeepay.message.iso8583.Iso8583Operator;
 import com.yeepay.message.iso8583.Iso8583StandardFieldNoes;
 
 /**
- * Description: 附加数据域转换辅助器
- * @author Kevin
- * @Createdate 2014年7月22日.
- **/
-
-public class Field48TransferHelper implements Iso8583FieldTransferHelper {
+ * 欠费查询转换助手
+ * @author LiuDawei
+ *
+ */
+public class Field48OweQueryTransferHelper implements Iso8583FieldTransferHelper {
 
 	public int getFieldNo() {
 		return Iso8583StandardFieldNoes.FIELD_NO_ATTACH_DATA;
