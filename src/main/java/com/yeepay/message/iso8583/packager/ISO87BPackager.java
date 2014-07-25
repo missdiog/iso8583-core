@@ -2,11 +2,11 @@ package com.yeepay.message.iso8583.packager;
 
 import org.jpos.iso.IFA_AMOUNT;
 import org.jpos.iso.IFA_BINARY;
-import org.jpos.iso.IFA_BITMAP;
 import org.jpos.iso.IFA_LLCHAR;
 import org.jpos.iso.IFA_LLLCHAR;
 import org.jpos.iso.IFA_LLLNUM;
 import org.jpos.iso.IFA_LLNUM;
+import org.jpos.iso.IFB_BITMAP;
 import org.jpos.iso.IF_CHAR;
 import org.jpos.iso.ISOBasePackager;
 import org.jpos.iso.ISOFieldPackager;
@@ -18,7 +18,7 @@ import org.jpos.iso.ISOFieldPackager;
 public class ISO87BPackager extends ISOBasePackager {
 	protected ISOFieldPackager[] fld = {
 			new IFR_NUMERIC(4, "MESSAGE TYPE INDICATOR"),  // 0
-			new IFA_BITMAP(16, "BIT MAP"), // 1
+			new IFB_BITMAP(16, "BIT MAP"), // 1
 			new IFA_LLNUM(19, "PAN - PRIMARY ACCOUNT NUMBER"), // 2
 			new IFR_NUMERIC(6, "PROCESSING CODE"), // 3
 			new IFR_NUMERIC(12, "AMOUNT, TRANSACTION"), // 4
