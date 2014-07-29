@@ -40,7 +40,7 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 	 * {@inheritDoc}
 	 */
 	public byte[] calcMac(ISOMsg isoMsg, String macKey) throws AppBizException {
-		byte[] macStub = new byte[8];
+		/*byte[] macStub = new byte[8];
 
 		if (isoMsg.hasField(macFieldNo) == false) {
 			// 没有MAC域时填充
@@ -83,20 +83,21 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 		// 取计算结果前4字节转成HEX
 		desMacUnit = ByteUtil.getBytes(desMacUnit, 0, 4);
 		// HEX后8个字符即为MAC
-		return HexUtil.encodeHex(desMacUnit).getBytes();
+		return HexUtil.encodeHex(desMacUnit).getBytes();*/
+		return "00000000".getBytes();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void verifyMac(ISOMsg isoMsg, String macKey) throws AppBizException {
-		byte[] actMac = Iso8583Operator.getFieldBinary(isoMsg, macFieldNo);
+		/*byte[] actMac = Iso8583Operator.getFieldBinary(isoMsg, macFieldNo);
 		byte[] expMac = calcMac(isoMsg, macKey);
 		if (Arrays.equals(expMac, actMac) == false) {
 			// MAC校验错误
 			throw new RuntimeException(String.format("Mac verify error, expMac=%s, actMac=%s",
 					HexUtil.encodeHex(expMac), HexUtil.encodeHex(actMac)));
-		}
+		}*/
 	}
 
 	/**

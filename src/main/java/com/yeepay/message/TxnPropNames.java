@@ -322,6 +322,10 @@ public final class TxnPropNames {
 	public static final String ATTACH_DATA = "attachData";
 	
 	/**
+	 * 用户ID号 - java.lang.String
+	 */
+	public static final String USER_ID = "userId";
+	/**
 	 * 供电单位编码 - java.lang.String
 	 */
 	public static final String POWER_UNIT_CODE = "powerUnitCode";

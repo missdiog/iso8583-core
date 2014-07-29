@@ -136,7 +136,8 @@ public class Iso8583MessageConvertor implements MessageConvertor<byte[], byte[]>
 	 *            the tpdu to set
 	 */
 	public void setTpdu(String tpdu) {
-		this.tpdu = HexUtil.decodeHex(tpdu);
+//		this.tpdu = HexUtil.decodeHex(tpdu);
+		this.tpdu = tpdu.getBytes();
 	}
 
 	/**
@@ -144,7 +145,8 @@ public class Iso8583MessageConvertor implements MessageConvertor<byte[], byte[]>
 	 *            the txnHead to set
 	 */
 	public void setTxnHead(String txnHead) {
-		this.txnHead = HexUtil.decodeHex(txnHead);
+//		this.txnHead = HexUtil.decodeHex(txnHead);
+		this.txnHead = txnHead.getBytes();
 	}
 
 	/**

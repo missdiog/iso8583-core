@@ -123,7 +123,7 @@ public class Iso8583Operator {
 	 */
 	public static BigDecimal getFieldBigDecimal(ISOMsg isoMsg, int fieldNo) {
 		String value = getFieldString(isoMsg, fieldNo);
-		return (value != null ? new BigDecimal(value) : null);
+		return (value != null ? new BigDecimal(value.trim()) : null);
 	}
 
 	/**
