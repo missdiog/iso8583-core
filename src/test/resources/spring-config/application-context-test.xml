@@ -19,6 +19,6 @@
 	<import resource="classpath:spring-config/ac-msg-iso8583-config.xml" />
 	<import resource="classpath:spring-config/cup-hn-pos-config.xml" />
 	
-	<!-- <bean id="test.LocalUserService" class="me.andpay.ti.daf.dao.hibernate.UserServiceLocalBridge" /> -->
+	<bean id="txnAppCryptoService" class="me.andpay.ti.s3.test.MockTxnAppCryptoService" />
 
 </beans>

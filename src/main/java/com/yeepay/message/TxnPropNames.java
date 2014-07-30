@@ -117,7 +117,7 @@ public final class TxnPropNames {
 	public static final String AUTH_MERCH_ID = "authMerchId";
 
 	/**
-	 * 授权码 - java.lang.String
+	 * 授权终端号 - java.lang.String
 	 */
 	public static final String AUTH_TERM_ID = "authTermId";
 

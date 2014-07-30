@@ -39,6 +39,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>me.andpay.ti.ti-s3</groupId>
+			<artifactId>ti-s3-test</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>me.andpay.ac</groupId>
 			<artifactId>ac-const</artifactId>
 			<version>1.0.0</version>
