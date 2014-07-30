@@ -71,7 +71,7 @@ public class ISO87BPackager extends ISOBasePackager {
 			new IFR_CHAR(3, "CURRENCY CODE, TRANSACTION"), // 49
 			new IFR_CHAR(3, "CURRENCY CODE, SETTLEMENT"),  // 50
 			new IFR_CHAR(3, "CURRENCY CODE, CARDHOLDER BILLING"),
-			new IFA_BINARY(8, "PIN DATA"), // 52
+			new IFR_CHAR(16, "PIN DATA"), // 52
 			
 			
 			
@@ -85,7 +85,7 @@ public class ISO87BPackager extends ISOBasePackager {
 			new IFA_LLLCHAR(999, "RESERVED PRIVATE"), // 60
 			new IFA_LLLCHAR(999, "RESERVED PRIVATE"), // 61
 			new IFA_LLLCHAR(999, "RESERVED PRIVATE"), // 62
-			new IFA_LLLCHAR(999, "RESERVED PRIVATE"), // 63
+			new IFR_NUMERIC(6, "RESERVED PRIVATE"), // 63
 			new IFA_BINARY(8, "MESSAGE AUTHENTICATION CODE FIELD"), // 64
 			
 			new IFA_BINARY(1, "BITMAP, EXTENDED"), // 65

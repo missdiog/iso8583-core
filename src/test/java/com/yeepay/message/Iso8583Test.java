@@ -38,6 +38,9 @@ public class Iso8583Test {
 		ctx.setProperty(TxnPropNames.AUTH_TRACE_NO, "161C");
 		
 		byte[] msg1 = messageConvertor.pack(ctx);
+		
+		
+		
 		byte[] msg2 = cupHnPosIso8583Service.processCtx2IsoMsg(ctx);
 		
 		System.out.println(msg1);
