@@ -1,6 +1,10 @@
 package com.yeepay.channel.cup.hn.pos.iso8583.helper;
 
-import static com.yeepay.message.TxnPropNames.*;
+import static com.yeepay.message.TxnPropNames.MONTH_OWE_BILLS;
+import static com.yeepay.message.TxnPropNames.OWE_MONTHS;
+import static com.yeepay.message.TxnPropNames.POWER_BILLS_REC_NO;
+import static com.yeepay.message.TxnPropNames.TOTAL_PAY_BILLS;
+import static com.yeepay.message.TxnPropNames.TOTAL_PENALTY_CONTRACT;
 
 import java.math.BigDecimal;
 
@@ -8,7 +12,6 @@ import me.andpay.ti.base.AppBizException;
 
 import org.jpos.iso.ISOMsg;
 
-import com.yeepay.channel.cup.hn.util.ConstantUtil;
 import com.yeepay.message.TxnContext;
 import com.yeepay.message.iso8583.Iso8583BitMap;
 import com.yeepay.message.iso8583.Iso8583FieldTransferHelper;

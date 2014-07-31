@@ -1,12 +1,29 @@
 package com.yeepay.message;
 
-import static com.yeepay.message.TxnPropNames.*;
+import static com.yeepay.message.TxnPropNames.ACQ_INST_ID;
+import static com.yeepay.message.TxnPropNames.AMT;
+import static com.yeepay.message.TxnPropNames.AUTH_MERCH_ID;
+import static com.yeepay.message.TxnPropNames.AUTH_TERM_ID;
+import static com.yeepay.message.TxnPropNames.AUTH_TRACE_NO;
+import static com.yeepay.message.TxnPropNames.CARD_SEQ_NO;
+import static com.yeepay.message.TxnPropNames.CUR;
+import static com.yeepay.message.TxnPropNames.IC_DATA;
+import static com.yeepay.message.TxnPropNames.MERCHANT_TYPE;
+import static com.yeepay.message.TxnPropNames.PAN;
+import static com.yeepay.message.TxnPropNames.PIN;
+import static com.yeepay.message.TxnPropNames.PROCESS_CODE;
+import static com.yeepay.message.TxnPropNames.SEND_INST_ID;
+import static com.yeepay.message.TxnPropNames.SRV_COND_CODE;
+import static com.yeepay.message.TxnPropNames.SRV_ENTRY_MODE;
+import static com.yeepay.message.TxnPropNames.TRACK2;
+import static com.yeepay.message.TxnPropNames.TRACK3;
+import static com.yeepay.message.TxnPropNames.TXN_TIME;
+import static com.yeepay.message.TxnPropNames.USER_ID;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 import me.andpay.ac.consts.CurrencyCodes;
-import me.andpay.ti.util.ByteUtil;
 import me.andpay.ti.util.HexUtil;
 
 import org.springframework.context.ApplicationContext;

@@ -1,23 +1,17 @@
 package com.yeepay.channel.cup.hn.pos.iso8583;
 
-import java.util.Arrays;
-
-import com.yeepay.message.iso8583.Iso8583MacHelper;
-import com.yeepay.message.iso8583.Iso8583Operator;
-import com.yeepay.message.iso8583.Iso8583StandardFieldNoes;
 import me.andpay.ti.base.AppBizException;
 import me.andpay.ti.lnk.annotaion.Lnkwired;
 import me.andpay.ti.s3.api.crypto.TxnAppCryptoService;
-import me.andpay.ti.s3.api.kms.KeyDataWithCv;
-import me.andpay.ti.util.ByteUtil;
-import me.andpay.ti.util.HexUtil;
 
 import org.jpos.iso.ISOMsg;
 import org.jpos.iso.ISOPackager;
 
+import com.yeepay.message.iso8583.Iso8583MacHelper;
+import com.yeepay.message.iso8583.Iso8583StandardFieldNoes;
+
 /**
  * ISO8583 MAC助手实现类 (银联MAC计算方式)
- * 
  * @author alex
  */
 public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
