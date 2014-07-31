@@ -85,6 +85,11 @@ public class Iso8583BitMap {
 	private String processCode;
 
 	/**
+	 * 服务点输入方式
+	 */
+	private String serviceEntryMode;
+	
+	/**
 	 * 服务点条件码
 	 */
 	private String serviceConditionCode;
@@ -98,6 +103,16 @@ public class Iso8583BitMap {
 	 * 网络管理信息码
 	 */
 	private String networkManCode;
+	
+	/**
+	 * 发送机构代码
+	 */
+	private String sendInstitutionId;
+	
+	/**
+	 * 商户类型
+	 */
+	private String merchantType;
 
 	/**
 	 * 解析表达式，获取请求和响应位图
@@ -285,18 +300,18 @@ public class Iso8583BitMap {
 	}
 
 	/**
-	 * @return the txnTypeCode
+	 * @return the serviceEntryMode
 	 */
-	public String getTxnTypeCode() {
-		return txnTypeCode;
+	public String getServiceEntryMode() {
+		return serviceEntryMode;
 	}
 
 	/**
-	 * @param txnTypeCode
-	 *            the txnTypeCode to set
+	 * @param serviceEntryMode
+	 *            the serviceEntryMode to set
 	 */
-	public void setTxnTypeCode(String txnTypeCode) {
-		this.txnTypeCode = txnTypeCode;
+	public void setServiceEntryMode(String serviceEntryMode) {
+		this.serviceEntryMode = serviceEntryMode;
 	}
 
 	/**
@@ -315,6 +330,21 @@ public class Iso8583BitMap {
 	}
 
 	/**
+	 * @return the txnTypeCode
+	 */
+	public String getTxnTypeCode() {
+		return txnTypeCode;
+	}
+
+	/**
+	 * @param txnTypeCode
+	 *            the txnTypeCode to set
+	 */
+	public void setTxnTypeCode(String txnTypeCode) {
+		this.txnTypeCode = txnTypeCode;
+	}
+	
+	/**
 	 * @return the networkManCode
 	 */
 	public String getNetworkManCode() {
@@ -327,5 +357,35 @@ public class Iso8583BitMap {
 	 */
 	public void setNetworkManCode(String networkManCode) {
 		this.networkManCode = networkManCode;
+	}
+	
+	/**
+	 * @return the sendInstitutionId
+	 */
+	public String getSendInstitutionId() {
+		return sendInstitutionId;
+	}
+
+	/**
+	 * @param sendInstitutionId
+	 *            the sendInstitutionId to set
+	 */
+	public void setSendInstitutionId(String sendInstitutionId) {
+		this.sendInstitutionId = sendInstitutionId;
+	}
+
+	/**
+	 * @return the merchantType
+	 */
+	public String getMerchantType() {
+		return merchantType;
+	}
+
+	/**
+	 * @param merchantType
+	 *            the merchantType to set
+	 */
+	public void setMerchantType(String merchantType) {
+		this.merchantType = merchantType;
 	}
 }

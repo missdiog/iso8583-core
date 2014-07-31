@@ -177,6 +177,9 @@
 						<property name="serviceConditionCode">
 							<value>00</value>
 						</property>
+						<property name="sendInstitutionId">
+							<value>48255500</value>
+						</property>
 						<property name="requestMsgType">
 							<value>0820</value>
 						</property>
@@ -199,6 +202,9 @@
 						</property>
 						<property name="serviceConditionCode">
 							<value>00</value>
+						</property>
+						<property name="sendInstitutionId">
+							<value>48255500</value>
 						</property>
 						<property name="requestMsgType">
 							<value>0800</value>
@@ -223,6 +229,12 @@
 						<property name="serviceConditionCode">
 							<value>00</value>
 						</property>
+						<property name="sendInstitutionId">
+							<value>48255500</value>
+						</property>
+						<property name="merchantType">
+							<value>3100</value>
+						</property>
 						<property name="requestMsgType">
 							<value>0200</value>
 						</property>
@@ -245,6 +257,9 @@
 						</property>
 						<property name="serviceConditionCode">
 							<value>00</value>
+						</property>
+						<property name="sendInstitutionId">
+							<value>48255500</value>
 						</property>
 						<property name="requestMsgType">
 							<value>0200</value>
@@ -269,6 +284,9 @@
 						<property name="serviceConditionCode">
 							<value>00</value>
 						</property>
+						<property name="sendInstitutionId">
+							<value>48255500</value>
+						</property>
 						<property name="requestMsgType">
 							<value>0200</value>
 						</property>
@@ -284,28 +302,126 @@
 						</property>
 					</bean>
 				</entry>
-				<!-- 信用卡还款-转入卡验证位图定义 -->
+				<!-- 信用卡还款-转入卡验证 -->
 				<entry key="400130">
 					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">
 						<property name="processCode">
 							<value>400130</value>
 						</property>
+						<property name="serviceEntryMode">
+							<value>000</value>
+						</property>
 						<property name="serviceConditionCode">
 							<value>00</value>
+						</property>
+						<property name="sendInstitutionId">
+							<value>48255500</value>
+						</property>
+						<property name="merchantType">
+							<value>2100</value>
 						</property>
 						<property name="requestMsgType">
 							<value>0200</value>
 						</property>
 						<property name="requestBitMap">
-							<value>11*,22*</value>
-							<!-- 4*,11*,12*,13*,18*,22*,23,25*,32*,33*,41*,42*,44*,49*,55,64* -->
+							<value>4*,11*,12*,13*,18*,22*,23,25*,32*,33*,41*,42*,44*,49*,64*</value>
 						</property>
 						<property name="responseMsgType">
 							<value>0210</value>
 						</property>
 						<property name="responseBitMap">
-							<value>11*,22*</value>
-							<!-- 4=,11=,12*,13*,18*,22*,23,25=,28*,32=,33*,38,39*,41*,42*,44,49=,55,64= -->
+							<value>4*,11*,12*,13*,18*,22*,25*,28*,32*,33*,38,39*,41*,42*,44,48*,49*,64*</value>
+							<!-- 4=,11=,12*,13*,18*,22*,23,25=,28*,32=,33*,38,39*,41*,42*,44,49=,64= -->
+						</property>
+					</bean>
+				</entry>
+				<!-- 信用卡还款-还款确认 -->
+				<entry key="400120">
+					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">
+						<property name="processCode">
+							<value>400120</value>
+						</property>
+						<property name="serviceConditionCode">
+							<value>00</value>
+						</property>
+						<property name="sendInstitutionId">
+							<value>48255500</value>
+						</property>
+						<property name="merchantType">
+							<value>2100</value>
+						</property>
+						<property name="requestMsgType">
+							<value>0200</value>
+						</property>
+						<property name="requestBitMap">
+							<value>2,4*,11*,12*,13*,18*,22*,23,25*,28*,32*,33*,35,36,41*,42*,44*,48,49*,52,55,64*</value>
+						</property>
+						<property name="responseMsgType">
+							<value>0210</value>
+						</property>
+						<property name="responseBitMap">
+							<value>2*,4*,11*,12*,13*,18*,22*,25*,28*,32*,33*,38,39*,41*,42*,44,49*,64*</value>
+						</property>
+					</bean>
+				</entry>
+				<!-- 消费转账-转入卡验证 -->
+				<entry key="400030">
+					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">
+						<property name="processCode">
+							<value>400030</value>
+						</property>
+						<property name="serviceEntryMode">
+							<value>000</value>
+						</property>
+						<property name="serviceConditionCode">
+							<value>00</value>
+						</property>
+						<property name="sendInstitutionId">
+							<value>48255500</value>
+						</property>
+						<property name="merchantType">
+							<value>6011</value>
+						</property>
+						<property name="requestMsgType">
+							<value>0200</value>
+						</property>
+						<property name="requestBitMap">
+							<value>4*,11*,12*,13*,18*,22*,23,25*,32*,33*,41*,42*,44*,49*,64*</value>
+						</property>
+						<property name="responseMsgType">
+							<value>0210</value>
+						</property>
+						<property name="responseBitMap">
+							<value>4*,11*,12*,13*,18*,22*,25*,28*,32*,33*,38,39*,41*,42*,44,48*,49*,64*</value>
+						</property>
+					</bean>
+				</entry>
+				<!-- 消费转账-转账确认 -->
+				<entry key="400020">
+					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">
+						<property name="processCode">
+							<value>400020</value>
+						</property>
+						<property name="serviceConditionCode">
+							<value>00</value>
+						</property>
+						<property name="sendInstitutionId">
+							<value>48255500</value>
+						</property>
+						<property name="merchantType">
+							<value>6011</value>
+						</property>
+						<property name="requestMsgType">
+							<value>0200</value>
+						</property>
+						<property name="requestBitMap">
+							<value>2,4*,11*,12*,13*,18*,22*,23,25*,28*,32*,33*,35,36,41*,42*,44*,48*,49*,52,55,64*</value>
+						</property>
+						<property name="responseMsgType">
+							<value>0210</value>
+						</property>
+						<property name="responseBitMap">
+							<value>2*,4*,11*,12*,13*,18*,22*,25*,28*,32*,33*,38,39*,41*,42*,44,49*,64*</value>
 						</property>
 					</bean>
 				</entry>

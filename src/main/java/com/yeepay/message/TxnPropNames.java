@@ -307,7 +307,7 @@ public final class TxnPropNames {
 	public static final String MERCHANT_TYPE = "merType";
 	
 	/**
-	 * 手续费 - java.lang.String(C+8位手续费值)
+	 * 手续费 - java.math.BigDecimal
 	 */
 	public static final String TXN_FEE = "txnFee";
 	

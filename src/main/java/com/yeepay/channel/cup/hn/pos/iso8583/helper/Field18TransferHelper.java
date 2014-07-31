@@ -45,6 +45,11 @@ public class Field18TransferHelper implements Iso8583FieldTransferHelper {
 	 * {@inheritDoc}
 	 */
 	public boolean setFieldInfo(ISOMsg isoMsg, TxnContext txnCtx, Iso8583BitMap iso8583BitMap) throws AppBizException {
+		String merchantType = txnCtx.getProperty(MERCHANT_TYPE);
+		if (merchantType == null && iso8583BitMap.getMerchantType() != null) {
+			merchantType = iso8583BitMap.getMerchantType();
+			txnCtx.setProperty(MERCHANT_TYPE, merchantType);
+		}
 		return Iso8583Operator.setField(isoMsg, getFieldNo(), txnCtx.getStringProperty(MERCHANT_TYPE));
 	}
 

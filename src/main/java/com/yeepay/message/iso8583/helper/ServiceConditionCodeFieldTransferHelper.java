@@ -2,17 +2,17 @@ package com.yeepay.message.iso8583.helper;
 
 import static com.yeepay.message.TxnPropNames.SRV_COND_CODE;
 import static com.yeepay.message.iso8583.Iso8583StandardFieldNoes.FIELD_NO_SERVICE_CONDITION_CODE;
-import com.yeepay.message.TxnContext;
-import com.yeepay.message.iso8583.Iso8583BitMap;
-import com.yeepay.message.iso8583.Iso8583FieldTransferHelper;
-import com.yeepay.message.iso8583.Iso8583Operator;
 import me.andpay.ti.base.AppBizException;
 
 import org.jpos.iso.ISOMsg;
 
+import com.yeepay.message.TxnContext;
+import com.yeepay.message.iso8583.Iso8583BitMap;
+import com.yeepay.message.iso8583.Iso8583FieldTransferHelper;
+import com.yeepay.message.iso8583.Iso8583Operator;
+
 /**
- * 输入模式转换器辅助类
- * 
+ * 服务点条件代码转换器辅助类
  * @author alex
  */
 public class ServiceConditionCodeFieldTransferHelper implements Iso8583FieldTransferHelper {
@@ -52,7 +52,7 @@ public class ServiceConditionCodeFieldTransferHelper implements Iso8583FieldTran
 			srvCondCode = iso8583BitMap.getServiceConditionCode();
 			txnCtx.setProperty(SRV_COND_CODE, srvCondCode);
 		}
-
-		return Iso8583Operator.setField(isoMsg, getFieldNo(), srvCondCode);
+		//return Iso8583Operator.setField(isoMsg, getFieldNo(), srvCondCode);
+		return Iso8583Operator.setField(isoMsg, getFieldNo(), txnCtx.getStringProperty(SRV_COND_CODE));
 	}
 }
