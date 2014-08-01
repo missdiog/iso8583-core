@@ -1,6 +1,6 @@
 package com.yeepay.message.iso8583.helper;
 
-import static com.yeepay.message.TxnPropNames.AMT;
+import static com.yeepay.message.TxnPropNames.AUTH_AMT;
 import static com.yeepay.message.iso8583.Iso8583StandardFieldNoes.FIELD_NO_AMOUNT;
 
 import java.math.BigDecimal;
@@ -46,7 +46,7 @@ public class AmountFieldTransferHelper implements Iso8583FieldTransferHelper {
 			amt = amt.movePointLeft(amtPointOffset);
 		}
 
-		BigDecimal txnAmt = txnCtx.getProperty(AMT);
+		BigDecimal txnAmt = txnCtx.getProperty(AUTH_AMT);
 
 		Iso8583Operator.checkFieldInfo(getFieldNo(), txnAmt, amt);
 	}
@@ -56,7 +56,7 @@ public class AmountFieldTransferHelper implements Iso8583FieldTransferHelper {
 	 */
 	public boolean getFieldInfo(ISOMsg isoMsg, TxnContext txnCtx, Iso8583BitMap iso8583BitMap) throws AppBizException {
 		BigDecimal amt = Iso8583Operator.getFieldBigDecimal(isoMsg, getFieldNo());
-		txnCtx.setProperty(AMT, amt);
+		txnCtx.setProperty(AUTH_AMT, amt);
 
 		return (amt != null);
 	}
@@ -65,14 +65,13 @@ public class AmountFieldTransferHelper implements Iso8583FieldTransferHelper {
 	 * {@inheritDoc}
 	 */
 	public boolean setFieldInfo(ISOMsg isoMsg, TxnContext txnCtx, Iso8583BitMap iso8583BitMap) throws AppBizException {
-		BigDecimal amt = txnCtx.getProperty(AMT);
+		BigDecimal amt = txnCtx.getProperty(AUTH_AMT);
 		if (amt == null) {
 			if (defaultAuthAmount == null) {
 				return false;
 			}
-
 			amt = defaultAuthAmount;
-			txnCtx.setProperty(AMT, amt);
+			txnCtx.setProperty(AUTH_AMT, amt);
 		}
 
 		// 金额到分(无小数的外币金额需特殊处理)

@@ -1,7 +1,6 @@
 package com.yeepay.message.iso8583.helper;
 
 import static com.yeepay.message.TxnPropNames.AUTH_TIME;
-import static com.yeepay.message.TxnPropNames.TXN_TIME;
 import static com.yeepay.message.iso8583.Iso8583StandardFieldNoes.FIELD_NO_TXN_DATE;
 import static com.yeepay.message.iso8583.Iso8583StandardFieldNoes.FIELD_NO_TXN_TIME;
 
@@ -46,7 +45,6 @@ public class AuthTimeFieldTransferHelper implements Iso8583FieldTransferHelper {
 	public boolean getFieldInfo(ISOMsg isoMsg, TxnContext txnCtx, Iso8583BitMap iso8583BitMap) throws AppBizException {
 		Date authTime = parseTxnTime(isoMsg);
 		txnCtx.setProperty(AUTH_TIME, authTime);
-
 		return (authTime != null);
 	}
 
@@ -54,7 +52,7 @@ public class AuthTimeFieldTransferHelper implements Iso8583FieldTransferHelper {
 	 * {@inheritDoc}
 	 */
 	public boolean setFieldInfo(ISOMsg isoMsg, TxnContext txnCtx, Iso8583BitMap iso8583BitMap) throws AppBizException {
-		Date txnTime = txnCtx.getProperty(TXN_TIME);
+		Date txnTime = txnCtx.getProperty(AUTH_TIME);
 		if (txnTime == null) {
 			return false;
 		}

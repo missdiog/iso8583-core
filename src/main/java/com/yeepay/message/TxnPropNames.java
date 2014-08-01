@@ -309,7 +309,7 @@ public final class TxnPropNames {
 	/**
 	 * 手续费 - java.math.BigDecimal
 	 */
-	public static final String TXN_FEE = "txnFee";
+	public static final String TXN_FEE_AMT = "txnFeeAmt";
 	
 	/**
 	 * 发送机构代码 - java.lang.String
