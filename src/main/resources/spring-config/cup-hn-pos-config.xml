@@ -47,7 +47,7 @@
 	<bean id="cup.hn.pos.Field48OweQueryTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field48OweQueryTransferHelper">
 		<description>Field 48 - Aditional data (private)</description>
 	</bean>
-	<bean id="cup.hn.pos.Field48PowerPaymentTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field48PowerPaymentTransferHelper">
+	<bean id="cup.hn.pos.Field48LifePaymentTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field48LifePaymentTransferHelper">
 		<description>Field 48 - Aditional data (private)</description>
 	</bean>
 	<bean id="cup.hn.pos.Field48TransferHelper" class="com.yeepay.message.iso8583.helper.DispatchFieldTransferHelper">
@@ -63,7 +63,7 @@
 						<!-- 水、电欠费查询 -->
 						<entry key="311010" value-ref="cup.hn.pos.Field48OweQueryTransferHelper" />
 						<!-- 水、电缴费 -->
-						<entry key="002010" value-ref="cup.hn.pos.Field48PowerPaymentTransferHelper" />
+						<entry key="002010" value-ref="cup.hn.pos.Field48LifePaymentTransferHelper" />
 					</map>
 				</property>
 			</bean>
@@ -78,7 +78,7 @@
 	</bean>
 	
 	<bean id="cup.hn.pos.Field63DefaultTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field63DefaultTransferHelper" />
-	<bean id="cup.hn.pos.Field63PowerPaymentTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field63PowerPaymentTransferHelper">
+	<bean id="cup.hn.pos.Field63LifePaymentTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field63LifePaymentTransferHelper">
 		<description>Field 63 - Aditional data (private)</description>
 	</bean>
 	<bean id="cup.hn.pos.Field63TransferHelper" class="com.yeepay.message.iso8583.helper.DispatchFieldTransferHelper">
@@ -90,9 +90,9 @@
 				<property name="processCode2Helper">
 					<map>
 						<!-- 电力欠费查询 -->
-						<entry key="311010" value-ref="cup.hn.pos.Field63PowerPaymentTransferHelper" />
+						<entry key="311010" value-ref="cup.hn.pos.Field63LifePaymentTransferHelper" />
 						<!-- 电力缴费请求 -->
-						<entry key="002010" value-ref="cup.hn.pos.Field63PowerPaymentTransferHelper" />
+						<entry key="002010" value-ref="cup.hn.pos.Field63LifePaymentTransferHelper" />
 					</map>
 				</property>
 			</bean>

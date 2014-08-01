@@ -45,18 +45,18 @@ public class Field48OweQueryTransferHelper implements Iso8583FieldTransferHelper
 				String[] fields = attachData.split("|");
 				txnCtx.setProperty(OWE_FLAG, fields[0]);//欠费标识
 				txnCtx.setProperty(USER_NAME, fields[1].trim());//用户名称
-				txnCtx.setProperty(TOTAL_PAY_BILLS, new BigDecimal(fields[2].trim()));//总应缴电费
+				txnCtx.setProperty(TOTAL_PAY_BILLS, new BigDecimal(fields[2].trim()));//总应缴费用
 				txnCtx.setProperty(TOTAL_PENALTY_CONTRACT, new BigDecimal(fields[3].trim()));//总违约金
 				txnCtx.setProperty(OWE_MONTHS, Integer.valueOf(fields[4].trim()));//欠费月数
 				
 				//有欠费-即有【欠费明细信息】
 				if(ConstantUtil.OWE_FLAG_YES.equals(fields[0])){
-					txnCtx.setProperty(POWER_BILLS_REC_NO, fields[5].trim());//应收电费标识号
+					txnCtx.setProperty(BILLS_REC_NO, fields[5].trim());//应收费用标识号
 					txnCtx.setProperty(MONTH_OWE_BILLS, new BigDecimal(fields[6].trim()));//每月欠费金额
 					txnCtx.setProperty(MONTH_PENALTY_CONTRACT, new BigDecimal(fields[7].trim()));//每月违约金
 				}
 			}else{
-				txnCtx.setProperty(POWER_ERROR_CODE, attachData);
+				txnCtx.setProperty(RESP_ERROR_CODE, attachData);
 			}
 		}
 		return (attachData != null);
