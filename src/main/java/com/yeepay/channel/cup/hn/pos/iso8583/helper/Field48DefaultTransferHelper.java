@@ -1,6 +1,6 @@
 package com.yeepay.channel.cup.hn.pos.iso8583.helper;
 
-import static com.yeepay.message.TxnPropNames.ATTACH_DATA;
+import static com.yeepay.message.TxnPropNames.ADITIONAL_DATA;
 import me.andpay.ti.base.AppBizException;
 
 import org.jpos.iso.ISOMsg;
@@ -34,16 +34,16 @@ public class Field48DefaultTransferHelper implements Iso8583FieldTransferHelper 
 	 * {@inheritDoc}
 	 */
 	public boolean getFieldInfo(ISOMsg isoMsg, TxnContext txnCtx, Iso8583BitMap iso8583BitMap) throws AppBizException {
-		String attachData = Iso8583Operator.getFieldString(isoMsg, getFieldNo());
-		txnCtx.setProperty(ATTACH_DATA, attachData);
-		return (attachData != null);
+		String aditionalData = Iso8583Operator.getFieldString(isoMsg, getFieldNo());
+		txnCtx.setProperty(ADITIONAL_DATA, aditionalData);
+		return (aditionalData != null);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public boolean setFieldInfo(ISOMsg isoMsg, TxnContext txnCtx, Iso8583BitMap iso8583BitMap) throws AppBizException {
-		return Iso8583Operator.setField(isoMsg, getFieldNo(), txnCtx.getStringProperty(ATTACH_DATA));
+		return Iso8583Operator.setField(isoMsg, getFieldNo(), txnCtx.getStringProperty(ADITIONAL_DATA));
 	}
 
 }

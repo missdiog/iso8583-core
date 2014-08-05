@@ -319,10 +319,11 @@ public final class TxnPropNames {
 	/**
 	 * 附加数据 - java.lang.String
 	 */
-	public static final String ATTACH_DATA = "attachData";
+	public static final String ADITIONAL_DATA = "aditionalData";
 	
 	/**
 	 * 用户信息数据 - java.lang.String
+	 * (充值手机号 / 水电缴费客户号 / 转入卡号)
 	 */
 	public static final String USER_INFO_DATA = "userInfoData";
 	/**
