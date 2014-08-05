@@ -1,24 +1,6 @@
 package com.yeepay.message;
 
-import static com.yeepay.message.TxnPropNames.ACQ_INST_ID;
-import static com.yeepay.message.TxnPropNames.AMT;
-import static com.yeepay.message.TxnPropNames.AUTH_MERCH_ID;
-import static com.yeepay.message.TxnPropNames.AUTH_TERM_ID;
-import static com.yeepay.message.TxnPropNames.AUTH_TRACE_NO;
-import static com.yeepay.message.TxnPropNames.CARD_SEQ_NO;
-import static com.yeepay.message.TxnPropNames.CUR;
-import static com.yeepay.message.TxnPropNames.IC_DATA;
-import static com.yeepay.message.TxnPropNames.MERCHANT_TYPE;
-import static com.yeepay.message.TxnPropNames.PAN;
-import static com.yeepay.message.TxnPropNames.PIN;
-import static com.yeepay.message.TxnPropNames.PROCESS_CODE;
-import static com.yeepay.message.TxnPropNames.SEND_INST_ID;
-import static com.yeepay.message.TxnPropNames.SRV_COND_CODE;
-import static com.yeepay.message.TxnPropNames.SRV_ENTRY_MODE;
-import static com.yeepay.message.TxnPropNames.TRACK2;
-import static com.yeepay.message.TxnPropNames.TRACK3;
-import static com.yeepay.message.TxnPropNames.TXN_TIME;
-import static com.yeepay.message.TxnPropNames.USER_ID;
+import static com.yeepay.message.TxnPropNames.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -71,7 +53,7 @@ public class CellPhoneTest {
 		ctx.setProperty(AUTH_TERM_ID, "88888888");//终端号
 		ctx.setProperty(AUTH_MERCH_ID, "1234");//商户代号
 		
-		ctx.setProperty(USER_ID, "1234567890");//手机号
+		ctx.setProperty(USER_INFO_DATA, "1234567890");//手机号
 		ctx.setProperty(CUR, CurrencyCodes.CNY);//交易货币代码
 		ctx.setProperty(PIN, "1234567890123456");//PIN数据
 		ctx.setProperty(IC_DATA, "123467890");//IC卡信息

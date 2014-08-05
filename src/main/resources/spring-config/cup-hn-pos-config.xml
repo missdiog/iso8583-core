@@ -15,7 +15,7 @@
 		<description>Field 33 - Forwarding institution id</description>
 	</bean>
 	
-	<bean id="cup.hn.pos.Field44UserIDTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field44UserIDTransferHelper">
+	<bean id="cup.hn.pos.Field44UserInfoDataTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field44UserInfoDataTransferHelper">
 		<description>Field 44 - Aditional data (private)</description>
 	</bean>
 	<bean id="cup.hn.pos.Field44TransferHelper" class="com.yeepay.message.iso8583.helper.DispatchFieldTransferHelper">
@@ -27,11 +27,11 @@
 				<property name="processCode2Helper">
 					<map>
 						<!-- 全国话费充值 -->
-						<entry key="000002" value-ref="cup.hn.pos.Field44UserIDTransferHelper" />
+						<entry key="000002" value-ref="cup.hn.pos.Field44UserInfoDataTransferHelper" />
 						<!-- 水、电欠费查询 -->
-						<entry key="311010" value-ref="cup.hn.pos.Field44UserIDTransferHelper" />
+						<entry key="311010" value-ref="cup.hn.pos.Field44UserInfoDataTransferHelper" />
 						<!-- 水、电缴费 -->
-						<entry key="002010" value-ref="cup.hn.pos.Field44UserIDTransferHelper" />
+						<entry key="002010" value-ref="cup.hn.pos.Field44UserInfoDataTransferHelper" />
 					</map>
 				</property>
 			</bean>

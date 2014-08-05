@@ -59,7 +59,7 @@ public class PowerTest {
 		ctx.setProperty(TOTAL_PAY_BILLS, new BigDecimal("300"));//电费金额
 		ctx.setProperty(TOTAL_PENALTY_CONTRACT, new BigDecimal("400"));//违约金
 		
-		ctx.setProperty(USER_ID, "1234567890");//电力用户ID号
+		ctx.setProperty(USER_INFO_DATA, "1234567890");//电力用户ID号
 		ctx.setProperty(AUTH_CUR, CurrencyCodes.CNY);//交易货币代码
 		ctx.setProperty(PIN, "1234567890123456");//PIN数据
 		ctx.setProperty(IC_DATA, "123467890");//IC卡信息
