@@ -1,6 +1,6 @@
 package com.yeepay.channel.cup.hn.pos.iso8583.helper;
 
-import static com.yeepay.message.TxnPropNames.USER_ID;
+import static com.yeepay.message.TxnPropNames.USER_INFO_DATA;
 import me.andpay.ti.base.AppBizException;
 
 import org.jpos.iso.ISOMsg;
@@ -33,16 +33,16 @@ public class Field44UserIDTransferHelper implements Iso8583FieldTransferHelper {
 	 * {@inheritDoc}
 	 */
 	public boolean getFieldInfo(ISOMsg isoMsg, TxnContext txnCtx, Iso8583BitMap iso8583BitMap) throws AppBizException {
-		String powerUserId = Iso8583Operator.getFieldString(isoMsg, getFieldNo());
-		txnCtx.setProperty(USER_ID, powerUserId);
-		return (powerUserId != null);
+		String userInfoData = Iso8583Operator.getFieldString(isoMsg, getFieldNo());
+		txnCtx.setProperty(USER_INFO_DATA, userInfoData);
+		return (userInfoData != null);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public boolean setFieldInfo(ISOMsg isoMsg, TxnContext txnCtx, Iso8583BitMap iso8583BitMap) throws AppBizException {
-		return Iso8583Operator.setField(isoMsg, getFieldNo(), txnCtx.getStringProperty(USER_ID));
+		return Iso8583Operator.setField(isoMsg, getFieldNo(), txnCtx.getStringProperty(USER_INFO_DATA));
 	}
 
 }

@@ -18,7 +18,7 @@ import static com.yeepay.message.TxnPropNames.SRV_ENTRY_MODE;
 import static com.yeepay.message.TxnPropNames.TRACK2;
 import static com.yeepay.message.TxnPropNames.TRACK3;
 import static com.yeepay.message.TxnPropNames.TXN_TIME;
-import static com.yeepay.message.TxnPropNames.USER_ID;
+import static com.yeepay.message.TxnPropNames.USER_INFO_DATA;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -71,7 +71,7 @@ public class CellPhoneTest {
 		ctx.setProperty(AUTH_TERM_ID, "88888888");//终端号
 		ctx.setProperty(AUTH_MERCH_ID, "1234");//商户代号
 		
-		ctx.setProperty(USER_ID, "1234567890");//手机号
+		ctx.setProperty(USER_INFO_DATA, "1234567890");//手机号
 		ctx.setProperty(CUR, CurrencyCodes.CNY);//交易货币代码
 		ctx.setProperty(PIN, "1234567890123456");//PIN数据
 		ctx.setProperty(IC_DATA, "123467890");//IC卡信息

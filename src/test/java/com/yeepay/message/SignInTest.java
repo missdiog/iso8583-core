@@ -1,12 +1,12 @@
 package com.yeepay.message;
 
-import static com.yeepay.message.TxnPropNames.*;
+import static com.yeepay.message.TxnPropNames.AUTH_TRACE_NO;
+import static com.yeepay.message.TxnPropNames.PROCESS_CODE;
+import static com.yeepay.message.TxnPropNames.SEND_INST_ID;
+import static com.yeepay.message.TxnPropNames.TXN_TIME;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
-import me.andpay.ac.consts.CurrencyCodes;
-import me.andpay.ti.util.ByteUtil;
 import me.andpay.ti.util.HexUtil;
 
 import org.springframework.context.ApplicationContext;
