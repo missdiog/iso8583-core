@@ -36,11 +36,11 @@ public class Field48SecretKeyTransferHelper implements Iso8583FieldTransferHelpe
 	public boolean getFieldInfo(ISOMsg isoMsg, TxnContext txnCtx, Iso8583BitMap iso8583BitMap) throws AppBizException {
 		String attachData = Iso8583Operator.getFieldString(isoMsg, getFieldNo());
 		if(attachData != null){
-			if(attachData.length() != 35){
+			if(attachData.length() != 32){
 				throw new RuntimeException("SecretKey length Error, length=" + attachData.length());
 			}else{
-				String macKey = attachData.substring(3, 19);
-				String pinKey = attachData.substring(19);
+				String macKey = attachData.substring(0, 16);
+				String pinKey = attachData.substring(16);
 				txnCtx.setProperty(TxnPropNames.MAC_KEY, macKey.getBytes());
 				txnCtx.setProperty(TxnPropNames.PIN_KEY, pinKey.getBytes());
 			}
