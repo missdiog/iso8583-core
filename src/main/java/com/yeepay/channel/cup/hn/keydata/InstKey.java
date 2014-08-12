@@ -12,6 +12,8 @@ import com.yeepay.message.TxnPropNames;
  */
 public class InstKey {
 	
+	public final static String YEEPAY_ORG_ID = "03085511";  //48255500
+	
 	/**
 	 * 机构密钥map,key=机构号
 	 */
