@@ -19,8 +19,12 @@ public class Iso8583MessageUtil {
 	public static byte[] getIso8583DataToSend(byte[] iso8583Data, byte[] tpdu, byte[] txnHead) {
 		// 4字节长度位 = TPDU长度 + txnHead长度 + iso8583Data长度
 //		byte[] dataLen = ByteUtil.parseBytes(tpdu.length + txnHead.length + iso8583Data.length, 2);
+		/*
 		byte[] dataLen = String.format("%04d", tpdu.length + txnHead.length + iso8583Data.length).getBytes();
 		byte[] dataToSend = ByteUtil.concat(dataLen, tpdu, txnHead, iso8583Data);
+		*/
+		byte[] dataLen = String.format("%04d", iso8583Data.length).getBytes();
+		byte[] dataToSend = ByteUtil.concat(dataLen, iso8583Data);
 
 		return dataToSend;
 	}
@@ -42,7 +46,8 @@ public class Iso8583MessageUtil {
 					dataFromBank.length));
 		}
 
-		return ByteUtil.subBytes(dataFromBank, 4 + tpdu.length + txnHead.length);
+//		return ByteUtil.subBytes(dataFromBank, 4 + tpdu.length + txnHead.length);
+		return ByteUtil.subBytes(dataFromBank, 4);
 	}
 	
 }
