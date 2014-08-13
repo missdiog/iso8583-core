@@ -4,6 +4,7 @@ import me.andpay.ti.base.AppBizException;
 
 import org.jpos.iso.ISOMsg;
 
+import com.yeepay.channel.cup.hn.keydata.InstKey;
 import com.yeepay.message.TxnContext;
 import com.yeepay.message.TxnPropNames;
 import com.yeepay.message.iso8583.Iso8583BitMap;
@@ -43,6 +44,9 @@ public class Field48SecretKeyTransferHelper implements Iso8583FieldTransferHelpe
 				String pinKey = attachData.substring(16);
 				txnCtx.setProperty(TxnPropNames.MAC_KEY, macKey.getBytes());
 				txnCtx.setProperty(TxnPropNames.PIN_KEY, pinKey.getBytes());
+				
+				InstKey.updateMacKey(txnCtx.getStringProperty(TxnPropNames.SEND_INST_ID), macKey.getBytes());
+				InstKey.updatePinKey(txnCtx.getStringProperty(TxnPropNames.SEND_INST_ID), pinKey.getBytes());
 			}
 		}
 		return (attachData != null);

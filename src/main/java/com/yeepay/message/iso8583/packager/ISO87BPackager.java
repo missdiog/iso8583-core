@@ -6,6 +6,7 @@ import org.jpos.iso.IFA_LLCHAR;
 import org.jpos.iso.IFA_LLLCHAR;
 import org.jpos.iso.IFA_LLLNUM;
 import org.jpos.iso.IFA_LLNUM;
+import org.jpos.iso.IFB_BINARY;
 import org.jpos.iso.IFB_BITMAP;
 import org.jpos.iso.IF_CHAR;
 import org.jpos.iso.ISOBasePackager;
@@ -87,7 +88,7 @@ public class ISO87BPackager extends ISOBasePackager {
 			new IFA_LLLCHAR(999, "RESERVED PRIVATE"), // 62
 			new IFR_NUMERIC(6, "RESERVED PRIVATE"), // 63
 //			new IFA_BINARY(8, "MESSAGE AUTHENTICATION CODE FIELD"), // 64
-			new IFR_CHAR(8, "MESSAGE AUTHENTICATION CODE FIELD"), // 64
+			new IFB_BINARY(8, "MESSAGE AUTHENTICATION CODE FIELD"), // 64
 			
 			new IFA_BINARY(1, "BITMAP, EXTENDED"), // 65
 			new IFR_NUMERIC(1, "SETTLEMENT CODE"),
