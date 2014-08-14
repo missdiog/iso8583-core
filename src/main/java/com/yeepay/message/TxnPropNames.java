@@ -322,10 +322,25 @@ public final class TxnPropNames {
 	public static final String ADITIONAL_DATA = "aditionalData";
 	
 	/**
-	 * 用户信息数据 - java.lang.String
-	 * (充值手机号 / 水电缴费客户号 / 转入卡号)
+	 * 44域:充值手机号 - java.lang.String
 	 */
-	public static final String USER_INFO_DATA = "userInfoData";
+	public static final String F44_MOBILE_PHONE = "mobilePhone";
+	
+	/**
+	 * 44域:水电缴费客户号 - java.lang.String
+	 */
+	public static final String F44_LIFEPAY_CUST_NO = "lifePayCustNo";
+	
+	/**
+	 * 44域:电视缴费AC账号 - java.lang.String
+	 */
+	public static final String F44_AC_ACCOUNT_NO = "acAccountNo";
+	
+	/**
+	 * 44域:目标转入卡号 - java.lang.String
+	 */
+	public static final String F44_TARGET_CARD_NO = "targetCardNo";
+	
 	/**
 	 * 供电、供水、燃气单位编码 - java.lang.String
 	 */

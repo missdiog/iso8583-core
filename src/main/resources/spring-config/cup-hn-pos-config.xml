@@ -15,9 +15,19 @@
 		<description>Field 33 - Forwarding institution id</description>
 	</bean>
 	
-	<bean id="cup.hn.pos.Field44UserInfoDataTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field44UserInfoDataTransferHelper">
-		<description>Field 44 - Aditional data (private)</description>
+	<bean id="cup.hn.pos.Field44MobilePhoneTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field44MobilePhoneTransferHelper">
+		<description>Field 44 - Mobile Phone (private)</description>
 	</bean>
+	<bean id="cup.hn.pos.Field44LifePayCustNoTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field44LifePayCustNoTransferHelper">
+		<description>Field 44 - LifePay Customer No (private)</description>
+	</bean>
+	<bean id="cup.hn.pos.Field44ACAccountNoTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field44ACAccountNoTransferHelper">
+		<description>Field 44 - AC Account No (private)</description>
+	</bean>
+	<bean id="cup.hn.pos.Field44TargetCardNoTransferHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.helper.Field44TargetCardNoTransferHelper">
+		<description>Field 44 - Transfer Into Target Card No (private)</description>
+	</bean>
+	
 	<bean id="cup.hn.pos.Field44TransferHelper" class="com.yeepay.message.iso8583.helper.DispatchFieldTransferHelper">
 		<property name="fieldNo" value="44" />
 		<property name="helperSelector">
@@ -27,17 +37,21 @@
 				<property name="processCode2Helper">
 					<map>
 						<!-- 本地话费缴费交易包 -->
-						<entry key="000000" value-ref="cup.hn.pos.Field44UserInfoDataTransferHelper" />
+						<entry key="000000" value-ref="cup.hn.pos.Field44MobilePhoneTransferHelper" />
 						<!-- 全国话费充值 -->
-						<entry key="000002" value-ref="cup.hn.pos.Field44UserInfoDataTransferHelper" />
+						<entry key="000002" value-ref="cup.hn.pos.Field44MobilePhoneTransferHelper" />
 						<!-- 水、电欠费查询 -->
-						<entry key="311010" value-ref="cup.hn.pos.Field44UserInfoDataTransferHelper" />
+						<entry key="311010" value-ref="cup.hn.pos.Field44LifePayCustNoTransferHelper" />
 						<!-- 水、电缴费 -->
-						<entry key="002010" value-ref="cup.hn.pos.Field44UserInfoDataTransferHelper" />
+						<entry key="002010" value-ref="cup.hn.pos.Field44LifePayCustNoTransferHelper" />
 						<!-- 信用卡转入卡查询 -->
-						<entry key="400130" value-ref="cup.hn.pos.Field44UserInfoDataTransferHelper" />
+						<entry key="400130" value-ref="cup.hn.pos.Field44TargetCardNoTransferHelper" />
 						<!-- 信用卡还款确认 -->
-						<entry key="400120" value-ref="cup.hn.pos.Field44UserInfoDataTransferHelper" />
+						<entry key="400120" value-ref="cup.hn.pos.Field44TargetCardNoTransferHelper" />
+						<!-- 消费转账转入卡查询 -->
+						<entry key="400030" value-ref="cup.hn.pos.Field44TargetCardNoTransferHelper" />
+						<!-- 消费转账确认 -->
+						<entry key="400020" value-ref="cup.hn.pos.Field44TargetCardNoTransferHelper" />
 					</map>
 				</property>
 			</bean>
