@@ -62,18 +62,6 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 			mab = ByteUtil.rightPad(mab, mab.length + 8 - mab.length % 8, (byte) 0x00);
 		}
 
-		/*
-		// ECB XOR
-		byte[] mabUnit = ByteUtil.getBytes(mab, 0, 8);
-		for (int offset = 8; offset < mab.length; offset += 8) {
-			mabUnit = ByteUtil.xor(mabUnit, ByteUtil.getBytes(mab, offset, 8));
-		}
-		// 将XOR结果转HEX
-		String mabUnitHex = HexUtil.encodeHex(mabUnit);
-		byte[] mabUnitHigh = mabUnitHex.substring(0, 8).getBytes();
-		byte[] mabUnitLow = mabUnitHex.substring(8).getBytes();
-		*/
-		
 		// TEK
 		KeyDataWithCv tekByLmk = KeyDataWithCv.fromHex(macKey);
 		
@@ -90,44 +78,6 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 		}
 		
 		return mabUnit;
-		
-		/*
-		// 计算结果与HEX后8字节进行XOR
-		desMacUnit = ByteUtil.xor(desMacUnit, mabUnitLow);
-		// 用MAK对XOR结果进行DES
-		desMacUnit = txnAppCryptoService.encryptDataByTek(tekByLmk, desMacUnit, false);
-		// 取计算结果前4字节转成HEX
-		desMacUnit = ByteUtil.getBytes(desMacUnit, 0, 4);
-		// HEX后8个字符即为MAC
-		return HexUtil.encodeHex(desMacUnit).getBytes();
-		*/
-		
-		
-		/*
-		// ECB XOR
-		byte[] mabUnit = ByteUtil.getBytes(mab, 0, 8);
-		for (int offset = 8; offset < mab.length; offset += 8) {
-			mabUnit = ByteUtil.xor(mabUnit, ByteUtil.getBytes(mab, offset, 8));
-		}
-		// 将XOR结果转HEX
-		String mabUnitHex = HexUtil.encodeHex(mabUnit);
-		byte[] mabUnitHigh = mabUnitHex.substring(0, 8).getBytes();
-		byte[] mabUnitLow = mabUnitHex.substring(8).getBytes();
-		
-		// TEK
-		KeyDataWithCv tekByLmk = KeyDataWithCv.fromHex(macKey);
-		// 用MAK对HEX前8字节进行DES
-		byte[] desMacUnit = txnAppCryptoService.encryptDataByTek(tekByLmk, mabUnitHigh, false);
-		// 计算结果与HEX后8字节进行XOR
-		desMacUnit = ByteUtil.xor(desMacUnit, mabUnitLow);
-		// 用MAK对XOR结果进行DES
-		desMacUnit = txnAppCryptoService.encryptDataByTek(tekByLmk, desMacUnit, false);
-		// 取计算结果前4字节转成HEX
-		desMacUnit = ByteUtil.getBytes(desMacUnit, 0, 4);
-		// HEX后8个字符即为MAC
-		return HexUtil.encodeHex(desMacUnit).getBytes();
-		*/
-		//return "00000000".getBytes();
 	}
 
 	/**

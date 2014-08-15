@@ -27,6 +27,22 @@ public class DesECBUtil {
 		byte[] encryptedData = cipher.doFinal(encryptStr.getBytes());
 		return ConvertUtil.bytesToHexString(encryptedData);
 	}
+	
+	/**
+	 * 加密数据
+	 * @param encryptString 注意：这里的数据长度只能为8的倍数
+	 * @param encryptKey
+	 * @return
+	 * @throws Exception
+	 */
+	public static String encryptDES(byte[] encryptBytes, String encryptKey)
+			throws Exception {
+		SecretKeySpec key = new SecretKeySpec(getKey(encryptKey), "DES");
+		Cipher cipher = Cipher.getInstance("DES/ECB/NoPadding");
+		cipher.init(Cipher.ENCRYPT_MODE, key);
+		byte[] encryptedData = cipher.doFinal(encryptBytes);
+		return ConvertUtil.bytesToHexString(encryptedData);
+	}
 
 	/**
 	 * 自定义一个key

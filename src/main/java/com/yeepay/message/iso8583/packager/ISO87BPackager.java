@@ -6,6 +6,7 @@ import org.jpos.iso.IFA_LLCHAR;
 import org.jpos.iso.IFA_LLLCHAR;
 import org.jpos.iso.IFA_LLLNUM;
 import org.jpos.iso.IFA_LLNUM;
+import org.jpos.iso.IFA_NUMERIC;
 import org.jpos.iso.IFB_BINARY;
 import org.jpos.iso.IFB_BITMAP;
 import org.jpos.iso.IF_CHAR;
@@ -22,7 +23,7 @@ public class ISO87BPackager extends ISOBasePackager {
 			new IFB_BITMAP(16, "BIT MAP"), // 1
 			new IFA_LLNUM(19, "PAN - PRIMARY ACCOUNT NUMBER"), // 2
 			new IFR_NUMERIC(6, "PROCESSING CODE"), // 3
-			new IFR_NUMERIC(12, "AMOUNT, TRANSACTION"), // 4
+			new IFA_NUMERIC(12, "AMOUNT, TRANSACTION"), // 4
 			new IFR_NUMERIC(12, "AMOUNT, SETTLEMENT"), // 5
 			new IFR_NUMERIC(12, "AMOUNT, CARDHOLDER BILLING"),
 			new IFR_NUMERIC(10, "TRANSMISSION DATE AND TIME"),
