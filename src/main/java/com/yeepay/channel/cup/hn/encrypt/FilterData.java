@@ -5,8 +5,6 @@ import me.andpay.ti.util.HexUtil;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.yeepay.channel.cup.hn.util.ConvertUtil;
-
 
 public class FilterData {
 	private byte[] msgLen;//消息长度

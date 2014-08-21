@@ -5,7 +5,6 @@ import java.util.Arrays;
 import me.andpay.ti.base.AppBizException;
 import me.andpay.ti.lnk.annotaion.Lnkwired;
 import me.andpay.ti.s3.api.crypto.TxnAppCryptoService;
-import me.andpay.ti.s3.api.kms.KeyDataWithCv;
 import me.andpay.ti.util.ByteUtil;
 import me.andpay.ti.util.HexUtil;
 
@@ -14,7 +13,6 @@ import org.jpos.iso.ISOPackager;
 
 import com.yeepay.channel.cup.hn.encrypt.FilterData;
 import com.yeepay.channel.cup.hn.encrypt.model.MacRequest;
-import com.yeepay.channel.cup.hn.encrypt.model.MacRequest2;
 import com.yeepay.channel.cup.hn.encrypt.model.MacResponse;
 import com.yeepay.message.iso8583.Iso8583MacHelper;
 import com.yeepay.message.iso8583.Iso8583Operator;
@@ -69,12 +67,9 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 
 		byte[] calcBytes =  calcMacByEncription(mab, macKey);
 		String calcStr = new String(calcBytes);
-		
 		calcBytes = HexUtil.decodeHex(calcStr);
 		
-		System.out.println("=====CalcStr:" + calcStr);
 		return calcBytes;
-//		return new byte[]{0x0A,0x0B,0x0C,0x0D,0x0E,0x0F,0x20,0x30};
 		
 		/*// TEK
 		KeyDataWithCv tekByLmk = KeyDataWithCv.fromHex(macKey);
@@ -96,15 +91,8 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 
 	public byte[] calcMacByEncription(byte[] data, String mackey){
 		byte[] result = null;
-//		MacRequest macRequest = new MacRequest();
-//		macRequest.setCmdCode("M0");
-//		macRequest.setMacAlgorithm("2");
-//		macRequest.setSekIndex("S1000");
-//		macRequest.setMakPre("X");
-//		macRequest.setMak(mackey.getBytes());
-//		macRequest.setData(data);
 		
-		MacRequest2 macRequest = new MacRequest2();
+		MacRequest macRequest = new MacRequest();
 		macRequest.setCmdCode("80");
 		macRequest.setSekIndex("153");
 		macRequest.setMacKey(mackey.getBytes());
@@ -116,9 +104,9 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 		requestFilter.setMsgHead(msgHead);
 		byte[] requestByte = requestFilter.parseRequest();
 		
-		System.out.println("Send:" + HexUtil.encodeHex(requestByte));
+//		System.out.println("Send:" + HexUtil.encodeHex(requestByte));
 		byte[] responseByte = ShortConSocket.sendMsg(requestByte);
-		System.out.println("Rec:" + HexUtil.encodeHex(responseByte));
+//		System.out.println("Rec:" + HexUtil.encodeHex(responseByte));
 		
 		if(responseByte != null && responseByte.length > 0){
 			FilterData responseFilter = new FilterData();
