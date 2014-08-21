@@ -12,9 +12,14 @@ import me.andpay.ti.util.HexUtil;
 import org.jpos.iso.ISOMsg;
 import org.jpos.iso.ISOPackager;
 
+import com.yeepay.channel.cup.hn.encrypt.FilterData;
+import com.yeepay.channel.cup.hn.encrypt.model.MacRequest;
+import com.yeepay.channel.cup.hn.encrypt.model.MacRequest2;
+import com.yeepay.channel.cup.hn.encrypt.model.MacResponse;
 import com.yeepay.message.iso8583.Iso8583MacHelper;
 import com.yeepay.message.iso8583.Iso8583Operator;
 import com.yeepay.message.iso8583.Iso8583StandardFieldNoes;
+import com.yeepay.socket.encrypt.ShortConSocket;
 
 /**
  * ISO8583 MAC助手实现类 (银联MAC计算方式)
@@ -62,7 +67,16 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 			mab = ByteUtil.rightPad(mab, mab.length + 8 - mab.length % 8, (byte) 0x00);
 		}
 
-		// TEK
+		byte[] calcBytes =  calcMacByEncription(mab, macKey);
+		String calcStr = new String(calcBytes);
+		
+		calcBytes = HexUtil.decodeHex(calcStr);
+		
+		System.out.println("=====CalcStr:" + calcStr);
+		return calcBytes;
+//		return new byte[]{0x0A,0x0B,0x0C,0x0D,0x0E,0x0F,0x20,0x30};
+		
+		/*// TEK
 		KeyDataWithCv tekByLmk = KeyDataWithCv.fromHex(macKey);
 		
 		//去除MAC域内容后，取前8字节进行DES
@@ -77,9 +91,48 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 			mabUnit = txnAppCryptoService.encryptDataByTek(tekByLmk, mabUnit, false);
 		}
 		
-		return mabUnit;
+		return mabUnit;*/
 	}
 
+	public byte[] calcMacByEncription(byte[] data, String mackey){
+		byte[] result = null;
+//		MacRequest macRequest = new MacRequest();
+//		macRequest.setCmdCode("M0");
+//		macRequest.setMacAlgorithm("2");
+//		macRequest.setSekIndex("S1000");
+//		macRequest.setMakPre("X");
+//		macRequest.setMak(mackey.getBytes());
+//		macRequest.setData(data);
+		
+		MacRequest2 macRequest = new MacRequest2();
+		macRequest.setCmdCode("80");
+		macRequest.setSekIndex("153");
+		macRequest.setMacKey(mackey.getBytes());
+		macRequest.setData(data);
+		
+		byte[] msgHead = new byte[0];
+		FilterData requestFilter = new FilterData();
+		requestFilter.setMsgCxt(macRequest.allData());
+		requestFilter.setMsgHead(msgHead);
+		byte[] requestByte = requestFilter.parseRequest();
+		
+		System.out.println("Send:" + HexUtil.encodeHex(requestByte));
+		byte[] responseByte = ShortConSocket.sendMsg(requestByte);
+		System.out.println("Rec:" + HexUtil.encodeHex(responseByte));
+		
+		if(responseByte != null && responseByte.length > 0){
+			FilterData responseFilter = new FilterData();
+			responseFilter.setMsgHead(msgHead);
+			responseFilter.parseResponse(responseByte);
+			if(responseFilter.getMsgCxt() != null){
+				MacResponse macResponse =new MacResponse();
+				macResponse.parseBytes(responseFilter.getMsgCxt());
+				result = macResponse.getMac();
+			}
+		}
+		return result;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
