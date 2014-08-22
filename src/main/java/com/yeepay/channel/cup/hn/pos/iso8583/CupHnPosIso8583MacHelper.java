@@ -33,6 +33,16 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 	 * 交易报文定义
 	 */
 	protected ISOPackager txnISOPackager;
+	
+	/**
+	 * mac加密-命令码
+	 */
+	private String cmdCode;
+	
+	/**
+	 * mac加密-sek密钥索引
+	 */
+	private String sekIndex;
 
 	/**
 	 * 交易应用加解密服务
@@ -93,8 +103,8 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 		byte[] result = null;
 		
 		MacRequest macRequest = new MacRequest();
-		macRequest.setCmdCode("80");
-		macRequest.setSekIndex("153");
+		macRequest.setCmdCode(this.cmdCode);
+		macRequest.setSekIndex(this.sekIndex);
 		macRequest.setMacKey(mackey.getBytes());
 		macRequest.setData(data);
 		
@@ -104,9 +114,7 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 		requestFilter.setMsgHead(msgHead);
 		byte[] requestByte = requestFilter.parseRequest();
 		
-//		System.out.println("Send:" + HexUtil.encodeHex(requestByte));
 		byte[] responseByte = ShortConSocket.sendMsg(requestByte);
-//		System.out.println("Rec:" + HexUtil.encodeHex(responseByte));
 		
 		if(responseByte != null && responseByte.length > 0){
 			FilterData responseFilter = new FilterData();
@@ -157,5 +165,13 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 	@Lnkwired
 	public void setTxnAppCryptoService(TxnAppCryptoService txnAppCryptoService) {
 		this.txnAppCryptoService = txnAppCryptoService;
+	}
+
+	public void setCmdCode(String cmdCode) {
+		this.cmdCode = cmdCode;
+	}
+
+	public void setSekIndex(String sekIndex) {
+		this.sekIndex = sekIndex;
 	}
 }
