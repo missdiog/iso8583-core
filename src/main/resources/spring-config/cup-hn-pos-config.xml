@@ -127,6 +127,8 @@
 	<!-- MAC助手类 -->
 	<bean id="cup.hn.pos.MacHelper" class="com.yeepay.channel.cup.hn.pos.iso8583.CupHnPosIso8583MacHelper">
 		<property name="txnISOPackager" ref="cup.hn.pos.TxnISOPackager" />
+		<property name="cmdCode" value="80" /><!-- 命令码 -->
+		<property name="sekIndex" value="153" /><!-- sek密钥索引 -->
 	</bean>
 	
 	<!-- 交易ISO包定义 -->

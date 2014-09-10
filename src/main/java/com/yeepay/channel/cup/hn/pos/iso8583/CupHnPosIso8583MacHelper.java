@@ -5,16 +5,19 @@ import java.util.Arrays;
 import me.andpay.ti.base.AppBizException;
 import me.andpay.ti.lnk.annotaion.Lnkwired;
 import me.andpay.ti.s3.api.crypto.TxnAppCryptoService;
-import me.andpay.ti.s3.api.kms.KeyDataWithCv;
 import me.andpay.ti.util.ByteUtil;
 import me.andpay.ti.util.HexUtil;
 
 import org.jpos.iso.ISOMsg;
 import org.jpos.iso.ISOPackager;
 
+import com.yeepay.channel.cup.hn.encrypt.FilterData;
+import com.yeepay.channel.cup.hn.encrypt.model.MacRequest;
+import com.yeepay.channel.cup.hn.encrypt.model.MacResponse;
 import com.yeepay.message.iso8583.Iso8583MacHelper;
 import com.yeepay.message.iso8583.Iso8583Operator;
 import com.yeepay.message.iso8583.Iso8583StandardFieldNoes;
+import com.yeepay.socket.encrypt.ShortConSocket;
 
 /**
  * ISO8583 MAC助手实现类 (银联MAC计算方式)
@@ -30,6 +33,16 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 	 * 交易报文定义
 	 */
 	protected ISOPackager txnISOPackager;
+	
+	/**
+	 * mac加密-命令码
+	 */
+	private String cmdCode;
+	
+	/**
+	 * mac加密-sek密钥索引
+	 */
+	private String sekIndex;
 
 	/**
 	 * 交易应用加解密服务
@@ -62,7 +75,13 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 			mab = ByteUtil.rightPad(mab, mab.length + 8 - mab.length % 8, (byte) 0x00);
 		}
 
-		// TEK
+		byte[] calcBytes =  calcMacByEncription(mab, macKey);
+		String calcStr = new String(calcBytes);
+		calcBytes = HexUtil.decodeHex(calcStr);
+		
+		return calcBytes;
+		
+		/*// TEK
 		KeyDataWithCv tekByLmk = KeyDataWithCv.fromHex(macKey);
 		
 		//去除MAC域内容后，取前8字节进行DES
@@ -77,9 +96,39 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 			mabUnit = txnAppCryptoService.encryptDataByTek(tekByLmk, mabUnit, false);
 		}
 		
-		return mabUnit;
+		return mabUnit;*/
 	}
 
+	public byte[] calcMacByEncription(byte[] data, String mackey){
+		byte[] result = null;
+		
+		MacRequest macRequest = new MacRequest();
+		macRequest.setCmdCode(this.cmdCode);
+		macRequest.setSekIndex(this.sekIndex);
+		macRequest.setMacKey(mackey.getBytes());
+		macRequest.setData(data);
+		
+		byte[] msgHead = new byte[0];
+		FilterData requestFilter = new FilterData();
+		requestFilter.setMsgCxt(macRequest.allData());
+		requestFilter.setMsgHead(msgHead);
+		byte[] requestByte = requestFilter.parseRequest();
+		
+		byte[] responseByte = ShortConSocket.sendMsg(requestByte);
+		
+		if(responseByte != null && responseByte.length > 0){
+			FilterData responseFilter = new FilterData();
+			responseFilter.setMsgHead(msgHead);
+			responseFilter.parseResponse(responseByte);
+			if(responseFilter.getMsgCxt() != null){
+				MacResponse macResponse =new MacResponse();
+				macResponse.parseBytes(responseFilter.getMsgCxt());
+				result = macResponse.getMac();
+			}
+		}
+		return result;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -116,5 +165,13 @@ public class CupHnPosIso8583MacHelper implements Iso8583MacHelper {
 	@Lnkwired
 	public void setTxnAppCryptoService(TxnAppCryptoService txnAppCryptoService) {
 		this.txnAppCryptoService = txnAppCryptoService;
+	}
+
+	public void setCmdCode(String cmdCode) {
+		this.cmdCode = cmdCode;
+	}
+
+	public void setSekIndex(String sekIndex) {
+		this.sekIndex = sekIndex;
 	}
 }
