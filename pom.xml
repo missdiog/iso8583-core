@@ -72,7 +72,7 @@
 	<repositories>
 		<repository>
 			<id>nexus</id>
-			<url>http://172.19.30.105:8081/nexus/content/groups/public/</url>
+			<url>http://172.19.25.40:8081/nexus/content/groups/public/</url>
 		</repository>
 	</repositories>
 
@@ -80,13 +80,13 @@
 		<repository>
 			<id>releases</id>
 			<name>Releases</name>
-			<url>http://172.19.30.105:8081/nexus/content/repositories/releases</url>
+			<url>http://172.19.25.40:8081/nexus/content/repositories/releases</url>
 			<layout>default</layout>
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
 			<name>Snapshots</name>
-			<url>http://172.19.30.105:8081/nexus/content/repositories/snapshots</url>
+			<url>http://172.19.25.40:8081/nexus/content/repositories/snapshots</url>
 			<layout>default</layout>
 		</snapshotRepository>
 	</distributionManagement>
