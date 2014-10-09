@@ -235,6 +235,10 @@ public final class TxnPropNames {
 	 * IC卡数据 - byte[]
 	 */
 	public static final String IC_DATA = "icData";
+	/**
+	 * IC数据(Base64) - java.lang.String
+	 */
+	public static final String IC_DATA_BASE64 = "icDataBase64";
 
 	/**
 	 * 交易降级标志 - java.lang.Boolean
@@ -352,7 +356,7 @@ public final class TxnPropNames {
 	public static final String OWE_FLAG = "oweFlag";
 	
 	/**
-	 * 用户名称 - java.lang.String
+	 * 缴费用户名称 - java.lang.String
 	 */
 	public static final String USER_NAME = "userName";
 	

@@ -109,6 +109,8 @@
 				<property name="defaultHelper" ref="cup.hn.pos.Field63DefaultTransferHelper" />
 				<property name="processCode2Helper">
 					<map>
+						<!-- 手机充值(湖南)缴费交易包  -->
+						<entry key="000000" value-ref="cup.hn.pos.Field63LifePaymentTransferHelper" />
 						<!-- 电力欠费查询 -->
 						<entry key="311010" value-ref="cup.hn.pos.Field63LifePaymentTransferHelper" />
 						<!-- 电力缴费请求 -->
@@ -242,7 +244,7 @@
 						</property>
 					</bean>
 				</entry>
-				<!-- 本地话费缴费交易包 -->
+				<!-- 手机充值(湖南)缴费交易包 -->
 				<entry key="000000">
 					<bean class="com.yeepay.message.iso8583.Iso8583BitMap">
 						<property name="processCode">

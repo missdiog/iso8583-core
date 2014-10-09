@@ -12,7 +12,7 @@ import com.yeepay.message.iso8583.Iso8583FieldTransferHelper;
 import com.yeepay.message.iso8583.Iso8583Operator;
 
 /**
- * 自定义域: (有线电视缴费:缴费帐户所在地区; 电力缴费:供电单位编码)
+ * 自定义域: (有线电视缴费/湖南手机充值:缴费帐户所在地区; 电力缴费:供电单位编码)
  * @author Kevin
  * @Createdate 2014年7月22日.
  **/
